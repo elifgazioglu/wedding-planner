@@ -1,37 +1,82 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { View, Text } from "react-native";
+import React from "react";
+import { Tabs } from "expo-router";
+import { Colors } from "@/constants/Colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const Layout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+        tabBarActiveTintColor: Colors.light.tabIconDefault,
+        tabBarLabelStyle: {
+          fontFamily: "mon-sb",
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          tabBarLabel: "My Wedding",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="planning"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          tabBarLabel: "Planning",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="calendar-month"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="inspiration"
+        options={{
+          tabBarLabel: "Inspiration",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="lightbulb-on-outline"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="forums"
+        options={{
+          tabBarLabel: "Forums",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="chat-outline"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          tabBarLabel: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="decagram-outline"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
     </Tabs>
   );
-}
+};
+
+export default Layout;
